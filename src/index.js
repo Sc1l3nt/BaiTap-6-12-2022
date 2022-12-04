@@ -1,17 +1,26 @@
-import React from 'react';
+// Dom
 import ReactDOM from 'react-dom/client';
+// CSS
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// React router
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import HomeTemplate from './Template/HomeTemplate';
+import Home from './Pages/Home/Home';
+// React redux
+import { Provider } from 'react-redux'
+import BaiTapBurger from './Pages/BaiTapBurger/BaiTapBurger';
+import { store } from './Redux/configStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path='' element={<HomeTemplate />}>
+          <Route path='home' element={<Home />} />
+          <Route path='baitapburger' element={<BaiTapBurger />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
